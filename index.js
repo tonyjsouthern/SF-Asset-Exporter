@@ -4,9 +4,10 @@ var axios = require('axios');
 var btoa = require('btoa');
 require('dotenv').config()
 
-var username = process.env.USERNAME;
+var username = process.env.USER_NAME;
 var password = process.env.PASSWORD;
 var domain   = process.env.DOMAIN;
+console.log(domain, username, password)
 
 var totalAssets;
 var assetArray = [];
