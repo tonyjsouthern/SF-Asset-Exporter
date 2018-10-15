@@ -12,7 +12,7 @@ var totalAssets;
 var assetArray = [];
 var pageNumber = 1
 var url = 'https://app.salesfusion.com/api/assets/library/?page=';
-var recursiveNum = 0
+var recursiveNum = 177
 
 init();
 
