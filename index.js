@@ -11,7 +11,7 @@ var domain = process.env.DOMAIN;
 var totalAssets;
 var assetArray = [];
 var pageNumber = 1;
-var url = 'https://app.salesfusion.com/api/assets/library/?page=';
+var url = '';
 var recursiveNum = 165;
 
 init();
