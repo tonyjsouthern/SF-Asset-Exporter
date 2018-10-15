@@ -6,13 +6,13 @@ require('dotenv').config()
 
 var username = process.env.USER_NAME;
 var password = process.env.PASSWORD;
-var domain   = process.env.DOMAIN;
+var domain = process.env.DOMAIN;
 
 var totalAssets;
 var assetArray = [];
-var pageNumber = 1
+var pageNumber = 1;
 var url = 'https://app.salesfusion.com/api/assets/library/?page=';
-var recursiveNum = 177
+var recursiveNum = 165;
 
 init();
 
@@ -41,11 +41,20 @@ function downloadFile() {
   if (recursiveNum < totalAssets) {
     console.log("Downloading file " + recursiveNum + " out of " + totalAssets)
     download(currentObj.asset_url, './Dump/' + currentObj.folder_name, {
-      filename: currentObj.file_name
-    }).then(() => {
-      recursiveNum++
-      downloadFile();
-    })
+        filename: currentObj.file_name
+      }).then(() => {
+        recursiveNum++
+        downloadFile();
+      })
+      .catch(function(error) {
+        console.log(error);
+        fs.appendFile('error-log.txt', error + "\n", function(err) {
+          if (err) throw err;
+          console.log('Error Logged!');
+        });
+        recursiveNum++
+        downloadFile();
+      });
   } else {
     console.log("Done saving files")
   }
