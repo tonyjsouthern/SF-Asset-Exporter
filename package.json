@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "rm -rf dump && rm -rf error-log.txt && node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,13 @@
     "btoa": "^1.2.1",
     "dotenv": "^6.1.0",
     "download": "^7.1.0",
-    "filedownloader": "^1.2.7"
+    "filedownloader": "^1.2.7",
+    "fs-extra": "^7.0.0",
+    "inquirer": "^6.2.0"
+  },
+  "pkg": {
+    "scripts": {
+      "start": "rm -rf dump && rm -rf error-log.txt && node index.js"
+    }
   }
 }

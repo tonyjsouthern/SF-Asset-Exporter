@@ -1,20 +1,55 @@
-const fs = require('fs');
+const fs = require('fs-extra')
 const download = require('download');
 var axios = require('axios');
 var btoa = require('btoa');
+var inquirer = require('inquirer');
 require('dotenv').config()
 
 var username = process.env.USER_NAME;
 var password = process.env.PASSWORD;
-var domain = process.env.DOMAIN;
+var domain;
 
 var totalAssets;
 var assetArray = [];
 var pageNumber = 1;
-var url = '';
-var recursiveNum = 165;
+var url = process.env.APIURL;
+var recursiveNum = 0;
 
-init();
+//init();
+fs.remove(process.cwd() + '/dump', err => {
+  if (err) return console.error(err)
+})
+
+fs.remove(process.cwd() + '/error-log.txt', err => {
+  if (err) return console.error(err)
+})
+
+var questions = [
+  {
+     type: 'input',
+     name: 'domain',
+     message: "What's your domain name?"
+   },
+
+];
+
+var prompt = inquirer.createPromptModule();
+
+console.log(process.cwd())
+
+promptUser()
+
+function promptUser() {
+  prompt(questions).then( (answers) => {
+    if (answers.domain.includes('.com')) {
+          domain = answers.domain;
+      init();
+    }else {
+      console.log("Please enter a valid domain")
+      promptUser()
+    }
+  });
+}
 
 function init() {
   console.log("Gathering Page " + pageNumber + " of Results.")
@@ -40,7 +75,8 @@ function downloadFile() {
   var currentObj = assetArray[recursiveNum];
   if (recursiveNum < totalAssets) {
     console.log("Downloading file " + recursiveNum + " out of " + totalAssets)
-    download(currentObj.asset_url, './Dump/' + currentObj.folder_name, {
+    download(currentObj.asset_url, process.cwd() + '/Dump/' + currentObj.folder_name, {
+      // change this to group folders differently
         filename: currentObj.file_name
       }).then(() => {
         recursiveNum++
