@@ -7,12 +7,12 @@ require("dotenv").config();
 
 var username = process.env.USER_NAME;
 var password = process.env.PASSWORD;
+var url      = process.env.APIURL;
 var domain;
 
 var totalAssets;
 var assetArray    = [];
 var pageNumber    = 1;
-var url           = process.env.APIURL;
 var recursiveNum  = 0;
 
 // renove dump files before start progran
