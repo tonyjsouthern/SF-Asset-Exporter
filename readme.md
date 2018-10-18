@@ -2,7 +2,7 @@
 
 This application is built to export all files from a Salesfusion Customers Asset Library.
 
-All files exports will be placed into a folder named "Dump" in this projects root directory. If an error is encountered the error will be logged and save into error-log.txt in the root directory. 
+All files exports will be placed into a folder named "Dump" in this projects root directory. If an error is encountered the error will be logged and save into error-log.txt in the root directory.
 
 ### Installation:
 1) You must have Node.JS installed on your computer. To download Node.Js you can visit the offiicial site here: www.nodejs.org
@@ -14,6 +14,15 @@ In the main.js file on lines 8-10 you will find the the following four variables
 Password Username Domain URL
 
 In each of these variable replace the text following the = sign with the relevant information for your username, password, URL and domain. Save the file and use the above instructions to run the application
+
+###### Example:
+`var username = 'tj.southern;`
+
+`var password = 'MyUniquePassword123';`
+
+`var url      = 'http://myAPI.com/api/assets/';`
+
+`var domain = 'mywebsite.com';`
 
 ### Running the application on windows:
 
